@@ -20,7 +20,9 @@ class Todo
   end
 
   def to_displayable_string
-    "[#{@progress ? "[X]":"[ ]"}] #{@text} #{due_today? " " @due_date }" 
+    progress_copy= @progress ? "[X]" : "[ ]"
+     progress_date=self.due_today? ? "" : "#{@due_date}"
+    "#{progress_copy} #{@text} #{progress_date}"
   end
 end
 
@@ -46,7 +48,7 @@ class TodosList
   end
 
   def to_displayable_list
-    # FILL YOUR CODE HERE
+    @todos.map { |todo| todo.to_displayable_string }
   end
 end
 
@@ -78,4 +80,4 @@ puts "\n\n"
 
 puts "Due Later\n"
 puts todos_list.due_later.to_displayable_list
-puts "\n\n
+puts "\n\n"
